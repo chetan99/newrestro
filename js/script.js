@@ -33,9 +33,6 @@ var showLoading = function (selector) {
   insertHtml(selector, html);
 };
 
-
-  
-  
 var insertProperty = function (string, propName, propValue) {
   var propToReplace = "{{" + propName + "}}";
   string = string
@@ -50,9 +47,6 @@ var switchMenuToActive = function () {
   var classes = document.querySelector("#navHomeButton").className;
   classes = classes.replace(new RegExp("active", "g"), "");
   document.querySelector("#navHomeButton").className = classes;
-
- 
-  
   classes = document.querySelector("#navMenuButton").className;
   if (classes.indexOf("active") === -1) {
     classes += " active";
@@ -88,15 +82,12 @@ function buildAndShowHomeHTML (categories) {
     false); 
 }
 
-
-
 function chooseRandomCategory (categories) {
  
   var randomArrayIndex = Math.floor(Math.random() * categories.length);
 
   return categories[randomArrayIndex];
 }
-
 
 dc.loadMenuCategories = function () {
   showLoading("#main-content");
@@ -105,16 +96,12 @@ dc.loadMenuCategories = function () {
     buildAndShowCategoriesHTML);
 };
 
-
-
 dc.loadMenuItems = function (categoryShort) {
   showLoading("#main-content");
   $ajaxUtils.sendGetRequest(
    menuItemsUrl + categoryShort,
    buildAndShowMenuItemsHTML);
 };
-
-
 
 function buildAndShowCategoriesHTML (categories) {
   
@@ -138,9 +125,6 @@ function buildAndShowCategoriesHTML (categories) {
     },
     false);
 }
-
-
-
 function buildCategoriesViewHtml(categories,
                                  categoriesTitleHtml,
                                  categoryHtml) {
@@ -166,10 +150,6 @@ function buildCategoriesViewHtml(categories,
   finalHtml += "</section>";
   return finalHtml;
 }
-
-
-
-
 function buildAndShowMenuItemsHTML (categoryMenuItems) {
  
   $ajaxUtils.sendGetRequest(
@@ -192,9 +172,6 @@ function buildAndShowMenuItemsHTML (categoryMenuItems) {
     },
     false);
 }
-
-
-
 function buildMenuItemsViewHtml(categoryMenuItems,
                                 menuItemsTitleHtml,
                                 menuItemHtml) {
@@ -235,16 +212,13 @@ function buildMenuItemsViewHtml(categoryMenuItems,
       insertItemPrice(html,
                       "price_large",
                       menuItems[i].price_large);
-    html =
-      insertItemPortionName(html,
+    html =insertItemPortionName(html,
                             "large_portion_name",
                             menuItems[i].large_portion_name);
-    html =
-      insertProperty(html,
+    html =insertProperty(html,
                      "name",
                      menuItems[i].name);
-    html =
-      insertProperty(html,
+    html =insertProperty(html,
                      "description",
                      menuItems[i].description);
 
@@ -260,9 +234,6 @@ function buildMenuItemsViewHtml(categoryMenuItems,
   finalHtml += "</section>";
   return finalHtml;
 }
-
-
-
 function insertItemPrice(html,
                          pricePropName,
                          priceValue) {
@@ -275,9 +246,6 @@ function insertItemPrice(html,
   html = insertProperty(html, pricePropName, priceValue);
   return html;
 }
-
-
-
 function insertItemPortionName(html,
                                portionPropName,
                                portionValue) {
@@ -290,8 +258,6 @@ function insertItemPortionName(html,
   html = insertProperty(html, portionPropName, portionValue);
   return html;
 }
-
-
 global.$dc = dc;
 
 })(window);
